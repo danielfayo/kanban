@@ -6,24 +6,41 @@ const button = cva("button", {
     intent: {
       primary: [
         "bg-Main-Purple",
-        
+        "text-Lines-Light",
+        "flex",
+        "items-center",
+        "justify-center",
+        "hover:bg-Main-Purple-Hover",
+        "rounded-full"
       ],
       secondary: [
-        "bg-white",
-        "text-gray-800",
-        "border-gray-400",
-        "hover:bg-gray-100",
+        "bg-Light-Grey-Light-Bg",
+        "text-Main-Purple",
+        "flex",
+        "items-center",
+        "justify-center",
+        "dark:bg-White",
+        "rounded-full"
+      ],
+      destructive: [
+        "bg-Red",
+        "text-Lines-Light",
+        "flex",
+        "items-center",
+        "justify-center",
+        "rounded-full",
+        "hover:bg-Red-Hover"
       ],
     },
     size: {
-      small: ["text-sm", "py-1", "px-2"],
-      medium: ["text-base", "py-2", "px-4"],
+      large: ["text-[0.9375rem]", "h-12", "font-extrabold"],
+      small: ["text-[0.8125rem]", "h-10", "font-extrabold"],
     },
   },
-  compoundVariants: [{ intent: "primary", size: "medium", class: "uppercase" }],
+//   compoundVariants: [{ intent: "primary", size: "small",}],
   defaultVariants: {
     intent: "primary",
-    size: "medium",
+    size: "small",
   },
 });
 
