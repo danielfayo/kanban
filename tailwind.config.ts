@@ -18,7 +18,7 @@ const config: Config = {
       "Medium-Grey": "#828FA3",
       "Lines-Light": "#E4EBFA",
       "Light-Grey-Light-Bg": "#F4F7FD",
-      "White": "#FFFFF",
+      "White": "#FFFFFF",
       "Red": "#EA5555",
       "Red-Hover": "#FF9898",
     }

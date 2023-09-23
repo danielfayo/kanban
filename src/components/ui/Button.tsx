@@ -6,12 +6,14 @@ const button = cva("button", {
     intent: {
       primary: [
         "bg-Main-Purple",
-        "text-Lines-Light",
+        "text-White",
         "flex",
         "items-center",
         "justify-center",
         "hover:bg-Main-Purple-Hover",
-        "rounded-full"
+        "rounded-full", 
+        "px-6",
+        "disabled:opacity-25"
       ],
       secondary: [
         "bg-Light-Grey-Light-Bg",
@@ -20,16 +22,20 @@ const button = cva("button", {
         "items-center",
         "justify-center",
         "dark:bg-White",
-        "rounded-full"
+        "rounded-full",
+        "px-6",
+        "disabled:opacity-25"
       ],
       destructive: [
         "bg-Red",
-        "text-Lines-Light",
+        "text-White",
         "flex",
         "items-center",
         "justify-center",
         "rounded-full",
-        "hover:bg-Red-Hover"
+        "hover:bg-Red-Hover",
+        "px-6",
+        "disabled:opacity-25"
       ],
     },
     size: {
