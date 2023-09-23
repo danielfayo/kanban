@@ -13,7 +13,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
 
   useEffect(() => {
     setIsMounted(true);
-  });
+  },[]);
 
   return (
     <nav className="hidden md:flex flex-col w-[16rem] left-0 h-full pb-12 bg-White dark:bg-Dark-Grey border border-y-0 border-l-0 dark:border-r-Lines-Dark border-r-Lines-Light fixed top-0 z-10">
