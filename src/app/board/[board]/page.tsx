@@ -16,15 +16,15 @@ const Page = ({ params }: { params: { board: string } }) => {
     <div className=" md:ml-[16rem] overflow-x-auto mt-[4rem]">
       <div className="flex gap-6 overflow-auto h-full px-6">
         {board.length > 0 &&
-          board[0].columns.map((each) => (
-            <div className="flex flex-col min-w-[17.5rem]">
+          board[0].columns.map((each, index) => (
+            <div className="flex flex-col min-w-[17.5rem]" key={index}>
               <span className="my-6 text-Medium-Grey text-xs font-extrabold uppercase">
                 {each.name}{" "}({each.tasks.length})
                 <br />
               </span>
               <div className=" flex flex-col gap-4">
-                {each.tasks.map((task) => (
-                  <div className=" bg-White dark:bg-Dark-Grey min-h-[5.5rem] rounded-lg p-4 shadow-md flex flex-col justify-center">
+                {each.tasks.map((task, id) => (
+                  <div key={id} className=" bg-White dark:bg-Dark-Grey min-h-[5.5rem] rounded-lg p-4 shadow-md flex flex-col justify-center">
                     <span className="text-4 font-extrabold ">
                       {task.title}
                       <br />
