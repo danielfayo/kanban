@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Switch from "@radix-ui/react-switch";
 import { MoonStar, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -7,10 +7,19 @@ type ThemeToggleProps = {};
 
 const ThemeToggle: React.FC<ThemeToggleProps> = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = useState<boolean>();
 
   const handleChangeTheme = () => {
     setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
+
+  useEffect(() => {
+    if (theme === "dark") {
+      setIsDark(true);
+    } else {
+      setIsDark(false)
+    }
+  }, [theme]);
 
   return (
     <div className="bg-Light-Grey-Light-Bg dark:bg-Very-Dark-Grey ml-6 mr-6 flex items-center justify-center h-12 rounded-lg">
@@ -21,7 +30,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = () => {
         <Sun size={20} className="text-Medium-Grey" />
       </label>
       <Switch.Root
-        checked={!!(theme === "dark")}
+        checked={isDark}
         onClick={handleChangeTheme}
         className="w-[2.5rem] h-[1.25rem] rounded-full relative bg-Main-Purple outline-none flex "
         id="airplane-mode"
