@@ -27,9 +27,9 @@ const Page = () => {
               <div className=" flex flex-col gap-4">
                 {each.tasks.map((task, id) => (
                   <Dialog
+                  key={id}
                     trigger={
                       <div
-                        key={id}
                         className=" bg-White dark:bg-Dark-Grey min-h-[5.5rem] rounded-lg p-4 shadow-md flex flex-col justify-center cursor-pointer"
                       >
                         <span className="text-4 font-extrabold ">
