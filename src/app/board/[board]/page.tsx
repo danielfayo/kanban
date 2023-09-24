@@ -61,8 +61,8 @@ const Page = () => {
                     }
                     content={
                       <div className="flex flex-col gap-2">
-                        {task.subtasks.map((sub) => (
-                            <div className="flex rounded-lg items-center gap-4 bg-Light-Grey-Light-Bg dark:bg-Very-Dark-Grey p-4">
+                        {task.subtasks.map((sub,id) => (
+                            <div key={id} className="flex rounded-lg items-center gap-4 bg-Light-Grey-Light-Bg dark:bg-Very-Dark-Grey p-4">
                               <Checkbox.Root className={` border w-4 h-4 rounded-sm flex items-center justify-center ${sub.isCompleted ? "bg-Main-Purple" : "dark:bg-Dark-Grey bg-White"} `}>
                               {sub.isCompleted && <Check className="w-4" />}
                               </Checkbox.Root>
