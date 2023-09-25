@@ -16,7 +16,7 @@ const Page = () => {
   const board = boards.filter((b) => b.name === currentPath);
 
   return (
-    <div className=" md:ml-[16rem]  mt-[4rem]">
+    <div className=" md:ml-[16rem] overflow-auto  mt-[4rem]">
       <div className="flex gap-6 h-full px-6">
         {board.length > 0 &&
           board[0].columns.map((each, index) => (
