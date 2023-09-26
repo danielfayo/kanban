@@ -18,7 +18,7 @@ const Nav: React.FC<NavProps> = () => {
   return (
     <nav className="bg-White dark:bg-Dark-Grey h-16 flex items-center justify-between px-4 fixed top-0 w-full">
       <div className="flex gap-4 md:hidden">
-        <Image alt="logo" src="/assets/logo.svg" width={24} height={24} />
+        <Image priority={true} alt="logo" src="/assets/Logo.svg" width={24} height={24} />
         <NavDropdown
           trigger={
             <div className="cursor-pointer flex items-center gap-2">
