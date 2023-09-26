@@ -1,4 +1,4 @@
-type boards = {
+export type boardsType = {
     name: string;
     columns: {
         name: string;
@@ -12,4 +12,17 @@ type boards = {
             }[];
         }[];
     }[];
-}[]
+}
+
+export type columnType = {
+    name: string;
+    tasks: {
+        title: string;
+        description: string;
+        status: string;
+        subtasks: {
+            title: string;
+            isCompleted: boolean;
+        }[];
+    }[];
+}

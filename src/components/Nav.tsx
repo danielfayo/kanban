@@ -8,6 +8,7 @@ import NavDropdown from "./NavDropdown";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/store";
 import useCurrentPath from "@/hooks/useCurrentPath";
+import { boards } from "../../data";
 
 type NavProps = {};
 
@@ -20,6 +21,8 @@ const Nav: React.FC<NavProps> = () => {
       <div className="flex gap-4 md:hidden">
         <Image priority={true} alt="logo" src="/assets/Logo.svg" width={24} height={24} />
         <NavDropdown
+        boards={boards}
+        pathName={pathName}
           trigger={
             <div className="cursor-pointer flex items-center gap-2">
               <span className="text-Black dark:text-White text-lg font-extrabold">

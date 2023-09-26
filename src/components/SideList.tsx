@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
+import NewBoardDialog from "./NewBoardDialog";
 
 type SideListProps = {};
 
@@ -40,9 +41,7 @@ const SideList: React.FC<SideListProps> = () => {
               </Link>
             ))}
           </div>
-          <button className="text-Main-Purple flex gap-3 items-center text-sm font-bold mx-6 h-12 ">
-            <PanelLeft size={16} />+ Create New Board
-          </button>
+         <NewBoardDialog/>
         </div>
 
         <ThemeToggle />

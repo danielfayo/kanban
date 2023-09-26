@@ -3,9 +3,10 @@ import Dialog from "@/components/ui/Dialog";
 import { MoreVertical, Check } from "lucide-react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import StatusSelect from "./StatusSelect";
+import { boardsType } from "@/lib/types";
 
 type AllBoardProps = {
-  board: boards;
+  board: boardsType[];
 };
 
 const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
