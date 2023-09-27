@@ -1,16 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Form from "@radix-ui/react-form";
 import { Button } from "./ui/Button";
-import { PanelLeft } from "lucide-react";
+import { PanelLeft, X } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { AppDispatc } from "@/redux/store";
+import { boardsType } from "@/lib/types";
+import { nanoid } from "nanoid";
+import { createBoard } from "@/redux/features/boardSlice";
 
 type NewBoardDialogProps = {};
 
 const NewBoardDialog: React.FC<NewBoardDialogProps> = () => {
+  const dispatch = useDispatch<AppDispatc>();
+  const [boardTitle, setBoardTitle] = useState("");
+  const [boardColumns, setboardColumns] = useState([
+    { id: nanoid(), name: "", task: {} },
+  ]);
 
-const handleCreateBoard = () => {
-  
-}
+  const handleChangeBoard = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBoardTitle(event.target.value);
+  };
+
+  const createNewCol = () => {
+    setboardColumns((prev) => [...prev, { id: nanoid(), name: "", task: {} }]);
+  };
+
+  const removeCol = (id: string) => {
+    if (boardColumns.length > 1) {
+      const filteredArr = boardColumns.filter((each) => each.id !== id);
+      setboardColumns(filteredArr);
+    }
+  };
+
+  const handleColText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
+
+    const newArr = boardColumns.map((each, i) => {
+      if (id === each.id) {
+        return { ...each, name: value };
+      }
+      return each;
+    });
+    setboardColumns(newArr);
+  };
+
+  const handleCreateBoard = (event : React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const newBoard = {
+      name: boardTitle,
+      id: nanoid(),
+      columns: boardColumns,
+    };
+    dispatch(createBoard(newBoard));
+  };
+
+  // {name: '', task: {}}
 
   return (
     <Dialog.Root>
@@ -20,7 +65,7 @@ const handleCreateBoard = () => {
         </button>
       </Dialog.Trigger>
       <Dialog.Portal className="bg-White dark:bg-Dark-Grey data-[state=open]:animate-overlayShow fixed inset-0">
-        <Dialog.Overlay className="bg-White dark:bg-Dark-Grey z-20 opacity-50 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Overlay className="bg-Black z-20 opacity-50 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Dialog.Content
           asChild
           className="w-full max-w-[38rem] z-20 data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] p-4 md:p-8 translate-x-[-50%] translate-y-[-50%] rounded-lg bg-White dark:bg-Dark-Grey shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
@@ -40,6 +85,8 @@ const handleCreateBoard = () => {
                       <input
                         type="text"
                         required
+                        value={boardTitle}
+                        onChange={handleChangeBoard}
                         className="w-full border px-4 py-2 rounded-lg border-Medium-Grey bg-White dark:bg-Dark-Grey"
                         placeholder="e.g. Web Design"
                       />
@@ -57,21 +104,39 @@ const handleCreateBoard = () => {
                     <Form.Label className="text-xs text-Medium-Grey font-bold">
                       Column
                     </Form.Label>
-                    <Form.Control asChild>
-                      <input
-                        type="text"
-                        required
-                        className="w-full border px-4 py-2 rounded-lg border-Medium-Grey bg-White dark:bg-Dark-Grey"
-                        placeholder="e.g. Todo"
-                      />
-                    </Form.Control>
+                    {boardColumns.map((each, id) => (
+                      <Form.Control asChild key={each.id}>
+                        <div className="flex gap-4 items-center">
+                          <input
+                            id={each.id}
+                            value={each.name}
+                            type="text"
+                            required
+                            onChange={handleColText}
+                            className="w-full border px-4 py-2 rounded-lg border-Medium-Grey bg-White dark:bg-Dark-Grey"
+                            placeholder="e.g. Todo"
+                          />
+                          <X
+                            onClick={() => removeCol(each.id)}
+                            className="w-8 h-8 text-Medium-Grey cursor-pointer"
+                          />
+                        </div>
+                      </Form.Control>
+                    ))}
                     <Form.Message
                       match="valueMissing"
                       className="text-xs text-Red"
                     >
                       Please fill in the name of the column
                     </Form.Message>
-                    <Button intent="secondary" size="large" className="w-full mt-3">+ Add New Column</Button>
+                    <Button
+                      onClick={createNewCol}
+                      intent="secondary"
+                      size="large"
+                      className="w-full mt-3"
+                    >
+                      + Add New Column
+                    </Button>
                   </Form.Field>
                 </div>
               </div>
@@ -80,7 +145,7 @@ const handleCreateBoard = () => {
               {/* <Form.ValidityState /> */}
 
               <Form.Submit asChild>
-                <Button size="large" className="w-full">
+                <Button onClick={()=> {handleCreateBoard}} size="large" className="w-full">
                   Create New Board
                 </Button>
               </Form.Submit>

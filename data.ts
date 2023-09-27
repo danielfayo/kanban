@@ -1,11 +1,16 @@
+import { nanoid } from "nanoid";
+
 export const boards = [
   {
+    id: nanoid(),
     name: "Platform Launch",
     columns: [
       {
+        id: nanoid(),
         name: "Todo",
         tasks: [
           {
+            id: nanoid(),
             title: "Build UI for onboarding flow",
             description: "",
             status: "Todo",
@@ -25,6 +30,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Build UI for search",
             description: "",
             status: "Todo",
@@ -36,6 +42,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Build settings UI",
             description: "",
             status: "Todo",
@@ -51,6 +58,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "QA and test all major user journeys",
             description:
               "Once we feel version one is ready, we need to rigorously test it both internally and externally to identify any major gaps.",
@@ -69,9 +77,11 @@ export const boards = [
         ],
       },
       {
+        id: nanoid(),
         name: "Doing",
         tasks: [
           {
+            id: nanoid(),
             title: "Design settings and search pages",
             description: "",
             status: "Doing",
@@ -91,6 +101,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Add account management endpoints",
             description: "",
             status: "Doing",
@@ -110,6 +121,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Design onboarding flow",
             description: "",
             status: "Doing",
@@ -129,6 +141,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Add search enpoints",
             description: "",
             status: "Doing",
@@ -144,6 +157,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Add authentication endpoints",
             description: "",
             status: "Doing",
@@ -159,6 +173,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title:
               "Research pricing points of various competitors and trial different business models",
             description:
@@ -183,9 +198,11 @@ export const boards = [
         ],
       },
       {
+        id: nanoid(),
         name: "Done",
         tasks: [
           {
+            id: nanoid(),
             title: "Conduct 5 wireframe tests",
             description:
               "Ensure the layout continues to make sense and we have strong buy-in from potential users.",
@@ -198,6 +215,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Create wireframe prototype",
             description:
               "Create a greyscale clickable wireframe prototype to test our asssumptions so far.",
@@ -210,6 +228,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Review results of usability tests and iterate",
             description:
               "Keep iterating through the subtasks until we're clear on the core concepts for the app.",
@@ -231,6 +250,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title:
               "Create paper prototypes and conduct 10 usability tests with potential customers",
             description: "",
@@ -247,6 +267,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Market discovery",
             description:
               "We need to define and refine our core product. Interviews will help us learn common pain points and help us define the strongest MVP.",
@@ -259,6 +280,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Competitor analysis",
             description: "",
             status: "Done",
@@ -274,6 +296,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Research the market",
             description:
               "We need to get a solid overview of the market to ensure we have up-to-date estimates of market size and demand.",
@@ -294,12 +317,15 @@ export const boards = [
     ],
   },
   {
+    id: nanoid(),
     name: "Marketing Plan",
     columns: [
       {
+        id: nanoid(),
         name: "Todo",
         tasks: [
           {
+            id: nanoid(),
             title: "Plan Product Hunt launch",
             description: "",
             status: "Todo",
@@ -331,6 +357,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Share on Show HN",
             description: "",
             status: "",
@@ -350,6 +377,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Write launch article to publish on multiple channels",
             description: "",
             status: "",
@@ -375,22 +403,27 @@ export const boards = [
         ],
       },
       {
+        id: nanoid(),
         name: "Doing",
         tasks: [],
       },
       {
+        id: nanoid(),
         name: "Done",
         tasks: [],
       },
     ],
   },
   {
+    id: nanoid(),
     name: "Roadmap",
     columns: [
       {
+        id: nanoid(),
         name: "Now",
         tasks: [
           {
+            id: nanoid(),
             title: "Launch version one",
             description: "",
             status: "",
@@ -406,6 +439,7 @@ export const boards = [
             ],
           },
           {
+            id: nanoid(),
             title: "Review early feedback and plan next steps for roadmap",
             description:
               "Beyond the initial launch, we're keeping the initial roadmap completely empty. This meeting will help us plan out our next steps based on actual customer feedback.",
@@ -428,10 +462,12 @@ export const boards = [
         ],
       },
       {
+        id: nanoid(),
         name: "Next",
         tasks: [],
       },
       {
+        id: nanoid(),
         name: "Later",
         tasks: [],
       },

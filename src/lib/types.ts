@@ -1,8 +1,11 @@
 export type boardsType = {
+    id: string;
     name: string;
-    columns: {
+    columns?: {
+        id: string;
         name: string;
-        tasks: {
+        tasks?: {
+            id: string;
             title: string;
             description: string;
             status: string;
@@ -25,4 +28,10 @@ export type columnType = {
             isCompleted: boolean;
         }[];
     }[];
+}
+
+export type rawBoard = {
+    name: string;
+    id: string
+    columns: { id: string; name: string; }[]
 }
