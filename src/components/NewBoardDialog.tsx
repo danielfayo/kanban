@@ -125,6 +125,7 @@ const NewBoardDialog: React.FC<NewBoardDialogProps> = () => {
                     ))}
                     <Form.Message
                       match="valueMissing"
+                      
                       className="text-xs text-Red"
                     >
                       Please fill in the name of the column

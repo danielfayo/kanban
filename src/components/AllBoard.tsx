@@ -14,13 +14,13 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
     <div className=" md:ml-[16rem] overflow-auto mt-[2rem]" style={{height: "100vh-4rem"}}>
       <div className="flex gap-6 p-6">
         {board.length > 0 &&
-          board[0].columns.map((each, index) => (
+          board[0].columns?.map((each, index) => (
             <div className={`flex flex-col min-w-[17.5rem] max-w-[17.5rem]`} key={index}>
               <span className="my-6 text-Medium-Grey text-xs font-extrabold uppercase">
-                {each.name} ({each.tasks.length})
+                {each.name} ({each.tasks?.length})
               </span>
               <div className="flex flex-col gap-4">
-                {each.tasks.map((task, id) => (
+                {each.tasks?.map((task, id) => (
                   <Dialog
                     key={id}
                     trigger={

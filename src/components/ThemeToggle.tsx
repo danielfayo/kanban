@@ -24,7 +24,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = () => {
 
   useEffect(()=> {
 setIsMounted(true)
-  }, )
+  }, [])
 
   return (
     <div className="bg-Light-Grey-Light-Bg dark:bg-Very-Dark-Grey ml-6 mr-6 flex items-center justify-center h-12 rounded-lg">
