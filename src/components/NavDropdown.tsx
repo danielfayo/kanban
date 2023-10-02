@@ -4,6 +4,7 @@ import { boardsType } from "@/lib/types";
 import Link from "next/link";
 import { PanelLeft } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import NewBoardDialog from "./NewBoardDialog";
 
 type NavDropdownProps = {
   trigger: React.ReactElement;
@@ -54,9 +55,7 @@ const NavDropdown: React.FC<NavDropdownProps> = ({
                     ))}
                   </div>
                   <DropdownMenu.Item asChild>
-                    <button className="text-Main-Purple flex gap-3 items-center text-sm font-bold mx-6 h-12 ">
-                      <PanelLeft size={16} />+ Create New Board
-                    </button>
+                    <NewBoardDialog/>
                   </DropdownMenu.Item>
                 </div>
 
