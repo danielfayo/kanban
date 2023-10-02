@@ -1,9 +1,16 @@
 import React from "react";
-import Dialog from "@/components/ui/Dialog";
 import { MoreVertical, Check } from "lucide-react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import StatusSelect from "./StatusSelect";
 import { boardsType } from "@/lib/types";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/Dialog";
 
 type AllBoardProps = {
   board: boardsType[];
@@ -11,20 +18,25 @@ type AllBoardProps = {
 
 const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
   return (
-    <div className=" md:ml-[16rem] overflow-auto mt-[2rem]" style={{height: "100vh-4rem"}}>
+    <div
+      className=" md:ml-[16rem] overflow-auto mt-[2rem]"
+      style={{ height: "100vh-4rem" }}
+    >
       <div className="flex gap-6 p-6">
         {board.length > 0 &&
           board[0].columns?.map((each, index) => (
-            <div className={`flex flex-col min-w-[17.5rem] max-w-[17.5rem]`} key={index}>
+            <div
+              className={`flex flex-col min-w-[17.5rem] max-w-[17.5rem]`}
+              key={index}
+            >
               <span className="my-6 text-Medium-Grey text-xs font-extrabold uppercase">
                 {each.name} ({each.tasks?.length})
               </span>
               <div className="flex flex-col gap-4">
                 {each.tasks?.map((task, id) => (
-                  <Dialog
-                    key={id}
-                    trigger={
-                      <div className=" bg-White dark:bg-Dark-Grey min-h-[5.5rem] rounded-lg p-4 shadow-md flex flex-col justify-center cursor-pointer">
+                  <Dialog key={task.id}>
+                    <DialogTrigger asChild>
+                      <div className=" bg-White text-left dark:bg-Dark-Grey min-h-[5.5rem] rounded-lg p-4 shadow-md flex flex-col justify-center cursor-pointer w-full">
                         <span className="text-4 font-extrabold ">
                           {task.title}
                           <br />
@@ -38,21 +50,21 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                           of {task.subtasks.length} subtasks
                         </span>
                       </div>
-                    }
-                    title={
-                      <div className="flex items-center justify-between mb-6">
-                        <span className="text-lg font-extrabold">
-                          {task.title}
-                        </span>
-                        <MoreVertical className="h-5 text-Medium-Grey" />
-                      </div>
-                    }
-                    description={
-                      <span className="text-Medium-Grey text-sm font-medium leading-6">
-                        {task.description}
-                      </span>
-                    }
-                    content={
+                    </DialogTrigger>
+                    <DialogContent key={task.id}>
+                      <DialogHeader>
+                        <DialogTitle>
+                          <div className="flex items-center justify-between">
+                            {task.title}
+                            <MoreVertical className="h-5 text-Medium-Grey" />
+                          </div>
+                        </DialogTitle>
+                        {task.description && (
+                          <DialogDescription className="text-Medium-Grey text-sm font-medium leading-6 mt-6">
+                            {task.description}
+                          </DialogDescription>
+                        )}
+                      </DialogHeader>
                       <div className="flex flex-col gap-2 mt-6">
                         <span className="text-xs mb-4 font-extrabold text-Medium-Grey">
                           Subtasks (
@@ -82,11 +94,14 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                             <label>{sub.title}</label>
                           </div>
                         ))}
-                        <span className="text-xs mb-2 font-extrabold mt-6 text-Medium-Grey">Current Status</span>
-                        <StatusSelect placeHolder={each.name}/>
+                        <span className="text-xs mb-2 font-extrabold mt-6 text-Medium-Grey">
+                          Current Status
+                        </span>
+
+                        <StatusSelect board={board} changeStatus={()=>{}} />
                       </div>
-                    }
-                  />
+                    </DialogContent>
+                  </Dialog>
                 ))}
               </div>
             </div>

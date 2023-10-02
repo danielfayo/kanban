@@ -1,33 +1,33 @@
 import React from "react";
-import * as Select from "@radix-ui/react-select";
-import { ChevronDown, ChevronUpIcon } from "lucide-react";
-import { useAppSelector } from "@/redux/store";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { boardsType } from "@/lib/types";
 
 type StatusSelectProps = {
-  placeHolder: string;
+  board: boardsType[];
+  changeStatus: (value: string) => void
 };
 
-const StatusSelect: React.FC<StatusSelectProps> = ({ placeHolder }) => {
-  const boards = useAppSelector((state) => state.boards.boards);
+const StatusSelect: React.FC<StatusSelectProps> = ({ board, changeStatus }) => {
+  const boards = board[0]?.columns;
 
   return (
-    <Select.Root>
-      <Select.Trigger className="flex items-center justify-between h-10 px-4 rounded border border-Medium-Grey">
-        <Select.Value className="text-sm font-medium" placeholder={placeHolder} />
-        <Select.Icon className="text-Main-Purple">
-          <ChevronDown />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Content className="overflow-hidden bg-White rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
-          {boards.map((each, id) => (
-            <Select.Item key={id} value={each.name}>
-              <Select.ItemText>{each.name}</Select.ItemText>
-            </Select.Item>
-          ))}
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+    <Select onValueChange={changeStatus}>
+      <SelectTrigger className="flex items-center justify-between h-10 px-4 rounded border border-Medium-Grey">
+        <SelectValue placeholder={boards && boards[0].name} />
+      </SelectTrigger>
+      <SelectContent className="w-full bg-White dark:bg-Very-Dark-Grey p-4 flex flex-col gap-2">
+        {boards?.map(each => (
+          <SelectItem className="px-0 cursor-pointer w-full" key={each.id} value={each.name}>{each.name}</SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+
   );
 };
 export default StatusSelect;

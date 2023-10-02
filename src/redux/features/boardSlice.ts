@@ -13,11 +13,11 @@ export const allBoards = createSlice({
     createBoard: (state, action: PayloadAction<boardsType>) => {
       state.boards = [...state.boards, action.payload];
     },
-    //         createColumn: (state, action: PayloadAction<columnType>) => {
-    // state.boards =
-    //         }
+    replaceBoards: (state, action: PayloadAction<boardsType[]>) => {
+      state.boards = action.payload
+    }
   },
 });
 
-export const { createBoard } = allBoards.actions;
+export const { createBoard, replaceBoards } = allBoards.actions;
 export default allBoards.reducer;

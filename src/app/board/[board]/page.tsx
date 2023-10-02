@@ -2,6 +2,7 @@
 
 
 import AllBoard from "@/components/AllBoard";
+// import NewBoardForm from "@/components/NewBoardForm";
 import useCurrentPath from "@/hooks/useCurrentPath";
 import { useAppSelector } from "@/redux/store";
 import { usePathname } from "next/navigation";
@@ -17,6 +18,10 @@ const Page = () => {
 
   return (
     <AllBoard board={board}/>
+    // <div className="mt-24 ml-96">
+
+    // <NewBoardForm/>
+    // </div>
   );
 };
 export default Page;
