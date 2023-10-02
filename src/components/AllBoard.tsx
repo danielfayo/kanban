@@ -55,12 +55,14 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                       <DialogHeader>
                         <DialogTitle>
                           <div className="flex items-center justify-between">
+                            <span className="text-lg text-left">
                             {task.title}
+                            </span>
                             <MoreVertical className="h-5 text-Medium-Grey" />
                           </div>
                         </DialogTitle>
                         {task.description && (
-                          <DialogDescription className="text-Medium-Grey text-sm font-medium leading-6 mt-6">
+                          <DialogDescription className="text-Medium-Grey text-sm font-medium leading-6 mt-6 text-left">
                             {task.description}
                           </DialogDescription>
                         )}
@@ -87,9 +89,9 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                                   : "dark:bg-Dark-Grey bg-White"
                               } `}
                             >
-                              {sub.isCompleted && (
-                                <Check className="w-4 text-White" />
-                              )}
+                              {/* {sub.isCompleted && (
+                                )} */}
+                                <Check className={`w-4 ${sub.isCompleted ? "opacity-100" : "opacity-0"} text-White`} />
                             </Checkbox.Root>
                             <label>{sub.title}</label>
                           </div>
@@ -98,7 +100,7 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                           Current Status
                         </span>
 
-                        <StatusSelect board={board} changeStatus={()=>{}} />
+                        <StatusSelect placeholder={task.status ? task.status : (board[0]?.columns && board[0]?.columns[0]?.name)!} board={board} changeStatus={()=>{}} />
                       </div>
                     </DialogContent>
                   </Dialog>

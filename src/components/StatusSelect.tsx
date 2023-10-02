@@ -9,17 +9,18 @@ import {
 import { boardsType } from "@/lib/types";
 
 type StatusSelectProps = {
+  placeholder: string
   board: boardsType[];
   changeStatus: (value: string) => void
 };
 
-const StatusSelect: React.FC<StatusSelectProps> = ({ board, changeStatus }) => {
+const StatusSelect: React.FC<StatusSelectProps> = ({ placeholder,board, changeStatus }) => {
   const boards = board[0]?.columns;
 
   return (
     <Select onValueChange={changeStatus}>
       <SelectTrigger className="flex items-center justify-between h-10 px-4 rounded border border-Medium-Grey">
-        <SelectValue placeholder={boards && boards[0].name} />
+        <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className="w-full bg-White dark:bg-Very-Dark-Grey p-4 flex flex-col gap-2">
         {boards?.map(each => (

@@ -190,7 +190,7 @@ const NewTaskDialog: React.FC<NewTaskDialogProps> = () => {
               + Add New Column
             </Button>
           </div>
-          <StatusSelect board={board} changeStatus={handleChangeStatus} />
+          <StatusSelect placeholder={(board[0]?.columns && board[0]?.columns[0]?.name)!} board={board} changeStatus={handleChangeStatus} />
           <DialogClose>
             <Button
               onClick={handleCreateTask}
