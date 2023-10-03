@@ -17,7 +17,7 @@ const Page = () => {
   const board = boards.filter((b) => b.name === currentPath);
 
   return (
-    <AllBoard board={board}/>
+    <AllBoard boards={boards} board={board}/>
     // <div className="mt-24 ml-96">
 
     // <NewBoardForm/>

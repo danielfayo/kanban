@@ -11,12 +11,42 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
+import TaskDropdown from "./TaskDropdown";
+import { replaceBoards } from "@/redux/features/boardSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatc } from "@/redux/store";
 
 type AllBoardProps = {
   board: boardsType[];
+  boards: boardsType[];
 };
 
-const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
+const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
+  const dispatch = useDispatch<AppDispatc>();
+
+  const deleteTask = (colID: string, taskID: string) => {
+    const updatedColumns = board[0].columns?.map((each) => {
+      if (each.id === colID) {
+        return {
+          ...each,
+          tasks: each.tasks?.filter((task) => task.id !== taskID),
+        };
+      }
+      return each;
+    });
+    const updatedBoard = {
+      ...board[0],
+      columns: updatedColumns,
+    };
+    const updatedBoards = boards.map((boardItem) => {
+      if (boardItem.id === updatedBoard.id) {
+        return updatedBoard;
+      }
+      return boardItem;
+    });
+    dispatch(replaceBoards(updatedBoards));
+  };
+
   return (
     <div
       className=" md:ml-[16rem] overflow-auto mt-[2rem]"
@@ -56,9 +86,14 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                         <DialogTitle>
                           <div className="flex items-center justify-between">
                             <span className="text-lg text-left">
-                            {task.title}
+                              {task.title}
                             </span>
-                            <MoreVertical className="h-5 text-Medium-Grey" />
+                            <TaskDropdown
+                              deleteOnClick={() => deleteTask(each.id, task.id)}
+                              task={task}
+                              colID={each.id}
+                              taskID={task.id}
+                            />
                           </div>
                         </DialogTitle>
                         {task.description && (
@@ -91,7 +126,11 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                             >
                               {/* {sub.isCompleted && (
                                 )} */}
-                                <Check className={`w-4 ${sub.isCompleted ? "opacity-100" : "opacity-0"} text-White`} />
+                              <Check
+                                className={`w-4 ${
+                                  sub.isCompleted ? "opacity-100" : "opacity-0"
+                                } text-White`}
+                              />
                             </Checkbox.Root>
                             <label>{sub.title}</label>
                           </div>
@@ -100,7 +139,16 @@ const AllBoard: React.FC<AllBoardProps> = ({ board }) => {
                           Current Status
                         </span>
 
-                        <StatusSelect placeholder={task.status ? task.status : (board[0]?.columns && board[0]?.columns[0]?.name)!} board={board} changeStatus={()=>{}} />
+                        <StatusSelect
+                          placeholder={
+                            task.status
+                              ? task.status
+                              : (board[0]?.columns &&
+                                  board[0]?.columns[0]?.name)!
+                          }
+                          board={board}
+                          changeStatus={() => {}}
+                        />
                       </div>
                     </DialogContent>
                   </Dialog>
