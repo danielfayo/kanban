@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { MoreVertical, Check } from "lucide-react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import StatusSelect from "./StatusSelect";
-import { boardsType } from "@/lib/types";
+import { boardsType, tasksType } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,8 @@ type AllBoardProps = {
 };
 
 const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
+  const [holdingStatus, setHoldingStatus] = useState("");
+  const [holdingTask, setHoldingTask] = useState<tasksType>();
   const dispatch = useDispatch<AppDispatc>();
 
   const deleteTask = (colID: string, taskID: string) => {
@@ -44,6 +46,44 @@ const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
       }
       return boardItem;
     });
+    dispatch(replaceBoards(updatedBoards));
+  };
+
+  const checkSubtask = (colid: string, taskid: string, subid: string) => {
+    const updatedCol = board[0].columns?.map((brd) => {
+      if (brd.id === colid) {
+        const updatedTask = brd.tasks?.map((task) => {
+          if (task.id === taskid) {
+            const updatedSubtask = task.subtasks.map((sub) => {
+              if (sub.id === subid) {
+                if (sub.isCompleted === false) {
+                  return { ...sub, isCompleted: true };
+                }
+                return { ...sub, isCompleted: false };
+              }
+              return sub;
+            });
+            return { ...task, subtasks: updatedSubtask };
+          }
+          return task;
+        });
+        return { ...brd, tasks: updatedTask };
+      }
+      return brd;
+    });
+
+    const updatedBoard = {
+      ...board[0],
+      columns: updatedCol,
+    };
+
+    const updatedBoards = boards.map((boardItem) => {
+      if (boardItem.id === updatedBoard.id) {
+        return updatedBoard;
+      }
+      return boardItem;
+    });
+
     dispatch(replaceBoards(updatedBoards));
   };
 
@@ -118,6 +158,9 @@ const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
                             className="flex rounded-lg items-center gap-4 bg-Light-Grey-Light-Bg dark:bg-Very-Dark-Grey p-4"
                           >
                             <Checkbox.Root
+                              onClick={() =>
+                                checkSubtask(each.id, task.id, sub.id)
+                              }
                               className={` border w-4 h-4 rounded-sm flex items-center justify-center ${
                                 sub.isCompleted
                                   ? "bg-Main-Purple"
@@ -147,7 +190,9 @@ const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
                                   board[0]?.columns[0]?.name)!
                           }
                           board={board}
-                          changeStatus={() => {}}
+                          changeStatus={(value: string) =>
+                            setHoldingStatus(value)
+                          }
                         />
                       </div>
                     </DialogContent>

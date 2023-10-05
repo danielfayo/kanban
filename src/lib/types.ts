@@ -19,12 +19,15 @@ export type boardsType = {
 };
 
 export type columnType = {
+  id: string
   name: string;
-  tasks: {
+  tasks?: {
+    id: string
     title: string;
     description: string;
     status: string;
     subtasks: {
+      id: string
       title: string;
       isCompleted: boolean;
     }[];

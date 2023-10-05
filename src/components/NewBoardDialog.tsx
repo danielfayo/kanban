@@ -78,7 +78,7 @@ const NewBoardDialog: React.FC<NewBoardDialogProps> = () => {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-lg font-bold">
+            <DialogTitle className="text-lg font-bold mb-6">
               Add New Board
             </DialogTitle>
           </DialogHeader>

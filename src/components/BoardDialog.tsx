@@ -63,7 +63,7 @@ const BoardDialog: React.FC<BoardDialogProps> = ({ board, trigger }) => {
                 Current Status
               </span>
 
-              <StatusSelect board={board} changeStatus={()=>{}}/>
+              {/* <StatusSelect board={board} changeStatus={()=>{}}/> */}
             </div>
           </DialogContent>
         ))

@@ -5,17 +5,26 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/Button";
 import NavDropdown from "./NavDropdown";
-import { usePathname } from "next/navigation";
-import { useAppSelector } from "@/redux/store";
+import { usePathname, useRouter } from "next/navigation";
+import { AppDispatc, useAppSelector } from "@/redux/store";
 import useCurrentPath from "@/hooks/useCurrentPath";
 import { boards } from "../../data";
 import NewTaskDialog from "./NewTaskDialog";
+import BoardDropdown from "./BoardDropdown";
+import { boardsType } from "@/lib/types";
+import { useDispatch } from "react-redux";
+import { replaceBoards } from "@/redux/features/boardSlice";
+import EditBoardDialog from "./EditBoardDialog";
 
 type NavProps = {};
 
 const Nav: React.FC<NavProps> = () => {
+  const dispatch = useDispatch<AppDispatc>();
+  const router = useRouter();
   const pathName = usePathname();
   const { currentPath } = useCurrentPath(pathName);
+  const boards = useAppSelector((state) => state.boards.boards);
+  const board = boards.filter((b) => b.name === currentPath);
 
   return (
     <nav className="bg-White dark:bg-Dark-Grey h-16 flex items-center justify-between px-4 fixed top-0 w-full">
@@ -45,7 +54,9 @@ const Nav: React.FC<NavProps> = () => {
       </span>
       <div className="flex gap-4 items-center">
         <NewTaskDialog />
-        <MoreVertical className="text-Medium-Grey h-4" />
+        <BoardDropdown
+          board={board}
+        />
       </div>
     </nav>
   );
