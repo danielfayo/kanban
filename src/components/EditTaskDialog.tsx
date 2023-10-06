@@ -117,22 +117,6 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({ task, colID, taskID }) 
       }
       return col;
     });
-    //   {
-    //     col.tasks?.map((tsk) => {
-    //       if (tsk.id === taskID) {
-    //         return tsk = {
-    //           id: tsk.id,
-    //           title: titleAndDescription.title,
-    //           description: titleAndDescription.description,
-    //           status: status!,
-    //           subtasks: subtasks,
-    //         };
-    //       }
-    //       return tsk
-    //     });
-    //   }
-    //   return col;
-    // });
 
     const updatedBoard = {
       ...board[0],

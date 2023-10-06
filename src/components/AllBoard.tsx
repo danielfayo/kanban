@@ -15,6 +15,7 @@ import TaskDropdown from "./TaskDropdown";
 import { replaceBoards } from "@/redux/features/boardSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatc } from "@/redux/store";
+import UpdateStatus from "./UpdateStatus";
 
 type AllBoardProps = {
   board: boardsType[];
@@ -182,7 +183,7 @@ const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
                           Current Status
                         </span>
 
-                        <StatusSelect
+                        {/* <StatusSelect
                           placeholder={
                             task.status
                               ? task.status
@@ -193,6 +194,15 @@ const AllBoard: React.FC<AllBoardProps> = ({ board, boards }) => {
                           changeStatus={(value: string) =>
                             setHoldingStatus(value)
                           }
+                        /> */}
+                        <UpdateStatus
+                          board={board}
+                          colid={each.id}
+                          placeholder={
+                            (board[0]?.columns && board[0]?.columns[index]?.name)!
+                          }
+                          taskid={task.id}
+                          task={task}
                         />
                       </div>
                     </DialogContent>
