@@ -81,7 +81,7 @@ const UpdateStatus: React.FC<UpdateStatusProps> = ({
       <SelectTrigger className="w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="bg-Very-Dark-Grey py-2">
+      <SelectContent className="bg-White dark:bg-Very-Dark-Grey py-2">
         {board[0].columns?.map((each) => (
           <SelectItem
             className="cursor-pointer w-full"
