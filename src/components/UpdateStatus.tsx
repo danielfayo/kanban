@@ -38,12 +38,12 @@ const UpdateStatus: React.FC<UpdateStatusProps> = ({
   const updateStat = (val: string) => {
     const updatedCols = board[0].columns?.map((col) => {
       if (col.id === colid) {
-        const taskToMove = col.tasks?.find((tsk) => tsk.id === taskid);
-        if (taskToMove) {
-          setHoldingTask(taskToMove);
-        }
+        // const taskToMove = col.tasks?.find((tsk) => tsk.id === taskid);
+        // if (taskToMove) {
+        //   setHoldingTask(taskToMove);
+        // }
         const updatedTasks =
-          col.tasks?.filter((tsk) => tsk.id !== taskid) || [];
+          col.tasks?.filter((tsk) => tsk.id !== taskid);
         return {
           ...col,
           tasks: updatedTasks,

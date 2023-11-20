@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import allBoardsReducer from './features/boardSlice'
+import showSidebarReducer from './features/sidebarSlice'
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
 
 export const store = configureStore({
     reducer: {
-        boards: allBoardsReducer
+        boards: allBoardsReducer,
+        showSidebar: showSidebarReducer
     }
 })
 
